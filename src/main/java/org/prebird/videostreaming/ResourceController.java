@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResourceController {
   @GetMapping("/videos/{name}")
   public ResponseEntity<Resource> getVideo(@PathVariable String name, HttpServletRequest request) throws FileNotFoundException {
-    LogUtils.logHeader(request);
+//    LogUtils.logHeader(request);
+    log.info("resource API Called");
 
     String location = String.format("/Users/yonggyujeong/myFolder/down/%s", name);
     FileSystemResource video = new FileSystemResource(location);
