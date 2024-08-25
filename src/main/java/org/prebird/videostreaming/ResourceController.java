@@ -1,14 +1,9 @@
 package org.prebird.videostreaming;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResourceController {
   @GetMapping("/videos/{name}")
   public ResponseEntity<Resource> getVideo(@PathVariable String name, HttpServletRequest request) throws FileNotFoundException {
-
-    log.info("---headers---");
-    List<String> headerNames = Collections.list(request.getHeaderNames());
-
-    for (String headerName : headerNames) {
-      log.info(headerName + ": " + request.getHeader(headerName));
-    }
+    LogUtils.logHeader(request);
 
     String location = String.format("/Users/yonggyujeong/myFolder/down/%s", name);
     FileSystemResource video = new FileSystemResource(location);
