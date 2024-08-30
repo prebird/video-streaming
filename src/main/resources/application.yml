@@ -2,3 +2,6 @@
 logging:
   level:
     org.springframework: TRACE
+
+server:
+  port: 7777
